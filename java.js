@@ -3,29 +3,38 @@ let wins = 0
 let losses = 0
 
 function getComputerSelection() {
-  let computerSelection = choices[Math.floor(Math.random()*3)]
-  return computerSelection;
+  return choices[Math.floor(Math.random()*3)];
 }
 
 
-function getPlayerSelection() { 
-  let playerSelection = (prompt("rock, paper, or scissors?").toLowerCase())
-  return playerSelection }
-
-function playRound(playerSelection, computerSelection) {
-    if (!(playerSelection === 'rock' || playerSelection === 'paper' || playerSelection === 'scissors')) {
-    alert('You gotta enter rock, paper, or scissors! Check ur spelling.')
+function playRound(playerSelection) {
+    let computerSelection = getComputerSelection()
+    if ((playerSelection === 'rock' && computerSelection === 'scissors') || 
+             (playerSelection === 'scissors' && computerSelection === 'paper') || 
+             (playerSelection === 'paper' && computerSelection === 'rock')) {
+      alert('You win - this round!') 
+      wins++
+      w.textContent = `Wins =` + ` ${wins}`; }
+    else if ((playerSelection === 'rock' && computerSelection === 'paper') || 
+             (playerSelection === 'scissors' && computerSelection === 'rock') || 
+             (playerSelection === 'paper' && computerSelection === 'scissors')) {
+      alert('You lose - just this round!')
+      losses++ 
+      l.textContent = `Losses =` + ` ${losses}`  }
+    else alert('Tie-d this round!');
+    if (wins === 5) {
+      alert('You won big time!')
+      p.textContent = "You win big one"
+      results.appendChild(p)
     }
-    else if ((playerSelection === 'rock' && computerSelection === 'scissors') || (playerSelection === 'scissors' && computerSelection === 'paper') || (playerSelection === 'paper' && computerSelection === 'rock')) {
-    alert('You win - this round!') 
-    return wins++ }
-    else if ((playerSelection === 'rock' && computerSelection === 'paper') || (playerSelection === 'scissors' && computerSelection === 'rock') || (playerSelection === 'paper' && computerSelection === 'scissors')) {
-    alert('You lose - just this round!')
-    return losses++ }
-    else alert('Tie-d this round!')
+    if (losses === 5) {
+      alert('You lose big time!')
+      p.textContent = "You lose big one"
+      results.appendChild(p)
+    }
 }
 
-function game() {
+/* function game() {
   for (let i = 0; i < 5; i++) {
     let playerSelection = getPlayerSelection()
     let computerSelection = getComputerSelection()
@@ -37,4 +46,30 @@ function game() {
       alert('You lost it all!')
     }
     else alert('I guess u tied')
-}
+} */
+
+const rock = document.querySelector("#rock")
+const paper = document.querySelector('#paper')
+const scissors = document.querySelector('#scissors')
+const results = document.querySelector('#results')
+const p = document.createElement('p')
+const w = document.querySelector('#wins')
+const l = document.querySelector('#losses')
+
+
+rock.addEventListener('click', function() {
+  playRound('rock');
+})
+paper.addEventListener('click', function() {
+  playRound('paper')
+})
+scissors.addEventListener('click', function(){
+  playRound('scissors')
+})
+
+/* btn.forEach((btn) => {
+  btn.addEventListener("click", function() {
+    playRound(`${choice}`, computerSelection);
+    console.log(playerSelection); }
+    )
+}) */ //can't figure out how to select id
