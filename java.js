@@ -22,31 +22,20 @@ function playRound(playerSelection) {
       losses++ 
       l.textContent = `Losses =` + ` ${losses}`  }
     else alert('Tie-d this round!');
-    if (wins === 5) {
+    if (wins === 2) {
       alert('You won big time!')
       p.textContent = "You win big one"
       results.appendChild(p)
+      newgame.classList.remove('invis')
     }
-    if (losses === 5) {
+    if (losses === 2) {
       alert('You lose big time!')
       p.textContent = "You lose big one"
       results.appendChild(p)
+      newgame.classList.remove('invis')
     }
 }
 
-/* function game() {
-  for (let i = 0; i < 5; i++) {
-    let playerSelection = getPlayerSelection()
-    let computerSelection = getComputerSelection()
-    playRound(playerSelection, computerSelection) }
-  if (wins > losses) {
-      alert('You win!')
-    }
-    else if (losses > wins) {
-      alert('You lost it all!')
-    }
-    else alert('I guess u tied')
-} */
 
 const rock = document.querySelector("#rock")
 const paper = document.querySelector('#paper')
@@ -55,6 +44,7 @@ const results = document.querySelector('#results')
 const p = document.createElement('p')
 const w = document.querySelector('#wins')
 const l = document.querySelector('#losses')
+const newgame = document.querySelector('.newgame')
 
 
 rock.addEventListener('click', function() {
@@ -67,9 +57,15 @@ scissors.addEventListener('click', function(){
   playRound('scissors')
 })
 
-/* btn.forEach((btn) => {
-  btn.addEventListener("click", function() {
-    playRound(`${choice}`, computerSelection);
-    console.log(playerSelection); }
-    )
-}) */ //can't figure out how to select id
+newgame.addEventListener('click', function() {
+  resetGame()
+})
+
+function resetGame () {
+  wins = 0;
+  losses = 0;
+  results.removeChild(p);
+  newgame.classList.add('invis');
+  l.textContent = 'Losses =';
+  w.textContent = 'Wins =';
+}

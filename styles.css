@@ -1,0 +1,18 @@
+#rock {
+    color: lightgray;
+    background-color: rgb(73, 73, 73);
+}
+
+#paper {
+    color: white;
+    background-color: darkblue;
+}
+
+#scissors {
+    color: darkgrey;
+    background-color: green;
+}
+
+.invis {
+    display: none
+}
