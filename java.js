@@ -27,16 +27,20 @@ function playRound(playerSelection) {
       p.textContent = "You win big one"
       results.appendChild(p)
       newgame.classList.remove('invis')
+      choice.forEach(image => youWin())
     }
     if (losses === 2) {
       alert('You lose big time!')
       p.textContent = "You lose big one"
       results.appendChild(p)
       newgame.classList.remove('invis')
+      choice.forEach(image => youLose())
     }
 }
 
-
+function youWin() {
+  
+}
 const rock = document.querySelector("#rock")
 const paper = document.querySelector('#paper')
 const scissors = document.querySelector('#scissors')
@@ -45,7 +49,7 @@ const p = document.createElement('p')
 const w = document.querySelector('#wins')
 const l = document.querySelector('#losses')
 const newgame = document.querySelector('.newgame')
-
+const choice = document.querySelectorAll('choice')
 
 rock.addEventListener('click', function() {
   playRound('rock');
