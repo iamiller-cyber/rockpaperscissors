@@ -27,20 +27,18 @@ function playRound(playerSelection) {
       p.textContent = "You win big one"
       results.appendChild(p)
       newgame.classList.remove('invis')
-      choice.forEach(image => youWin())
+      Array.from(img).forEach(image => {image.src="images/thumbsUp.jpg";})
     }
     if (losses === 2) {
       alert('You lose big time!')
       p.textContent = "You lose big one"
       results.appendChild(p)
       newgame.classList.remove('invis')
-      choice.forEach(image => youLose())
+      Array.from(img).forEach(image => {image.src = "images/thumbsDown.jpg";})
     }
 }
 
-function youWin() {
-  
-}
+
 const rock = document.querySelector("#rock")
 const paper = document.querySelector('#paper')
 const scissors = document.querySelector('#scissors')
@@ -49,7 +47,10 @@ const p = document.createElement('p')
 const w = document.querySelector('#wins')
 const l = document.querySelector('#losses')
 const newgame = document.querySelector('.newgame')
-const choice = document.querySelectorAll('choice')
+const img = document.querySelectorAll('img')
+const r = document.querySelector('.rock')
+const pap = document.querySelector('.paper')
+const sci = document.querySelector('.scissors')
 
 rock.addEventListener('click', function() {
   playRound('rock');
@@ -72,4 +73,7 @@ function resetGame () {
   newgame.classList.add('invis');
   l.textContent = 'Losses =';
   w.textContent = 'Wins =';
+  r.src = "images/rock.jpg"
+  pap.src = "images/paper.jpg"
+  sci.src = "images/scissors.jpg"
 }
